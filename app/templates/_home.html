@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+       .movie-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 20px auto;
+        padding: 10px;
+      }
+
+      .poster {
+        width: 50%;
+        height: auto;
+        display: block;
+        float: left;
+        margin-right: 20px;
+      }
+
+      .details {
+        width: 50%;
+        float: left;
+      }
+
+      .details h2 {
+        margin-top: 0;
+      }
+
+      .details p {
+        margin: 0;
+      }
+
+      .movie {
+        margin-bottom: 30px;
+        clear: both;
+      } 
+
+      body {
+        background-image: linear-gradient(to left, rgb(174, 170, 170), rgb(255, 255, 255));;
+        font-family: Arial, sans-serif;
+        /* margin: 0; */
+      }
+      
+      .header {
+        background-color: rgb(174, 170, 170);
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+      
+      .dropdown {
+        position: left;
+        display:inline-block;
+        margin-left: -1400px;
+        margin-top: -500px;
+        margin-bottom: 20px;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        background-color: #ffffff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      
+      .dropdown-item {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .dropdown-item:hover {
+        background-color: #9b9b9b;
+      }
+      
+      .dropdown-content a {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .dropdown-content a:hover {
+        background-color: #B9E9FC;
+      }
+
+     
+      .search {
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            /* margin-left: 2000px; */
+            margin-top: -105px;
+        }
+        .search input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+            width: 300px;
+            font-size: 16px;
+            background-color: #f2f2f2;
+        }
+        .search button {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+            margin-left: 5px;
+            font-size: 16px;
+            background-color: #454545;
+            color: rgb(255, 255, 255);
+        }
+        .search button:hover {
+            background-color: #3e8e41;
+        }
+      a {
+        color: #333;
+        text-decoration: none;
+      }
+      .movie {
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+        .movie img {
+            max-width: 100%;
+            height: auto;
+        }
+      a:hover {
+        color: #444;
+      }
+      .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+  </head>
+  {% block body %}
+  <body>
+    <div class="header">
+      <h1>Welcome {{user}}</h1>
+    
+      <div class="dropdown">
+        <div class="dropdown-content">
+          <a href={{url_for('customer')}}>Check Status</a>
+          <a href={{url_for('login')}}>Logout</a>
+        </div>
+        <button class="dropdown-item">Menu &#9662;</button>
+      </div>
+      <form action="/search" method="POST">
+      <div class="search">
+      <input type="text" name="inp" placeholder="Search movie by name...">
+      <button type="submit">Search</button>
+      </div>
+    </div>
+    </form>
+  <div class="container">
+      {% for i in range(0, length) %}
+          <div class="movie">
+            <a href={{url_for('view', title=movie_titles[i])}}><img src="{{ movie_links[i] }}" alt={{movie_links[i]}} width="150px" height="250px"></a>
+            <p><b>{{ movie_titles[i] }}</b></p>
+          </div>
+      {% endfor %}
+  </div>
+  </body>
+  {% endblock %}
+</html>

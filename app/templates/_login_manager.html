@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      /* background-color: #dfdcdc; */
+      background-image: url("../static/login_bg.jpg");
+      background-size:     cover;          
+    background-repeat:   no-repeat;
+      font-family: Arial, sans-serif;
+    }
+    
+    form {
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px 40px 20px 20px;
+      width: 400px;
+      margin: 100px auto;
+      margin-top: 20px;
+    }
+    
+    h2 {
+      text-align: center;
+    }
+
+    h5 {
+      text-align: center;
+      background-color: gray; 
+      color: white; 
+      border-radius: 10px; 
+      padding:7px;
+      margin-left: 350px;
+      margin-right: 350px;
+      margin-top: 290px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    input[type="radio"] {
+      display: none;
+    }
+    
+    label[for="User"]::before,
+    label[for="Staff"]::before,
+    label[for="Manager"]::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+      border-radius: 50%;
+      border: 2px solid #CCCCCC;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    
+    input[type="radio"]:checked + label::before {
+      background-color: #007BFF;
+      border-color: #007BFF;
+    }
+    
+    input[type="submit"],input[type="button"] {
+      background-color: #007BFF;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.2s ease-in-out;
+    }
+    
+    input[type="submit"]:hover, input[type="button"]:hover {
+      background-color: #0069D9;
+    }
+  </style>
+</head>
+{% block body %}
+<body>
+<h1 style="text-align: center; color: rgb(0, 0, 0); margin-top: 70px;margin-bottom: 50px;">Video Rental System</h1>
+<form action="/manager_login" method="POST">
+  <h2>Login</h2>
+  {% if warn=="y" %}
+  <h4 style="background-color: rgb(255, 187, 0); padding: 5px; text-align: center; color: #FFFFFF; border-radius: 5px;">Invalid Credentials</h4>
+  {% endif %}
+  <input type="password" id="password" name="password" placeholder="Password" required>
+  <input type="submit" value="Log in">
+</form>
+
+
+<h5>Department of Computer Science and Engineering, Indian Institute of Technology Kharagpur</h4>
+<a href={{url_for('login')}} style="margin-left: 1400px;">User</a>
+</body>
+{% endblock %}
+</html>

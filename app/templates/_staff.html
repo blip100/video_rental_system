@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customer List</title>
+    <style>
+      /* CSS styling for the page */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ddd;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      /* CSS styling for the notification form */
+      .notification-form {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type=text], textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+      }
+
+      input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+
+      input[type=submit]:hover {
+        background-color: #3e8e41;
+      }
+
+      .dropdown {
+        position: left;
+        display:inline-block;
+        margin-left: 30px;
+        margin-top: -10px;
+        margin-bottom: 13px;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        background-color: #ffffff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      
+      .dropdown-item {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .dropdown-item:hover {
+        background-color: #9b9b9b;
+      }
+      
+      .dropdown-content a {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .dropdown-content a:hover {
+        background-color: #B9E9FC;
+      }
+
+      input[type="radio"] {
+      display: none;
+    }
+    
+    label[for="User"]::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+      border-radius: 50%;
+      border: 2px solid #CCCCCC;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    
+    input[type="radio"]:checked + label::before {
+      background-color: #007BFF;
+      border-color: #007BFF;
+    }
+    </style>
+  </head>
+
+  {% block body %}
+  <body>
+    <h1>Customer List</h1>
+    <div class="dropdown">
+      <button class="dropdown-item">Menu &#9662;</button>
+      <div class="dropdown-content">
+        <a href={{url_for('login')}}>Logout</a>
+      </div>
+      </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Returning Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(0, length) %}
+        <tr>
+          <td>{{ uname[i] }}</td>
+          <td>{{ uemail[i] }}</td>
+          <td>{{ deadline[i] }}</td>
+          <td>{{ titles[i] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="notification-form">
+      <h2>Send Notification</h2>
+      <form action="/sendmail" method="post">
+        <label for="recipients">Recipients (comma-separated list of usernames)</label>
+        <textarea id="recipients" name="recipients"></textarea>
+        <input type="radio" id="User" name="allusers" value="User">
+        <label for="User">All Users</label>
+        <label for="message">Message</label>
+        <textarea id="message" name="message"></textarea>
+        <input type="submit" value="Send">
+      </form>
+    </div>
+  </body>
+  {% endblock %}
+</html>

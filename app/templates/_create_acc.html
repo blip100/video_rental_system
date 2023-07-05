@@ -1,0 +1,114 @@
+<!--
+ADD ANY ADDITIONAL FEATURES IN INPUT BASED ON REQUIREMENT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>create acc</title>
+  <style>
+    body {
+      background-color: #dfdcdc;
+      /* background-image: url("../static/create_acc_bg.jpg"); */
+      background-size: 100% 100%;
+      font-family: Arial, sans-serif;
+    }
+    
+    form {
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCCC;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px 40px 20px 20px;
+      width: 400px;
+      margin: 100px auto;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    input[type="radio"] {
+      display: none;
+    }
+    
+    label[for="User"]::before,
+    label[for="Staff"]::before,
+    label[for="Manager"]::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+      border-radius: 50%;
+      border: 2px solid #CCCCCC;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    
+    input[type="radio"]:checked + label::before {
+      background-color: #007BFF;
+      border-color: #007BFF;
+    }
+    
+    input[type="submit"] {
+      background-color: #007BFF;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.2s ease-in-out;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #0069D9;
+    }
+  </style>
+</head>
+
+{% block body %}
+<body>
+<form action="/create_acc" method="POST">
+  <h1>Create Account</h1>
+  {% if warn=="y" %}
+  <h4 style="background-color: rgb(255, 187, 0); padding: 5px; text-align: center; color: #FFFFFF; border-radius: 5px;">The passwords don't match</h4>
+  {% endif %}
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+  <p>Select an option:</p>
+  <input type="radio" id="User" name="user_cat" value="User" checked>
+  <label for="User">User</label>
+  <input type="radio" id="Staff" name="user_cat" value="Staff">
+  <label for="Staff">Staff</label>
+  <input type="email" id="email" name="email" placeholder="Email">
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+  <label for="repassword">Re-enter Password:</label>
+  <input type="password" id="repassword" name="repassword" required>
+  <input type="submit" value="Sign Up">
+  <a href={{url_for('login')}} style="padding-left: 100px;">Already have an account?</a>
+</form>
+
+</body>
+{% endblock %}
+</html>

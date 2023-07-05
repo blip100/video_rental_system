@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Rentals</title>
+    <style>
+      /* CSS styling for the page */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .movie-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px 0;
+      }
+
+      .movie {
+        width: 30%;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        box-shadow: 2px 2px 4px #ddd;
+      }
+
+      .movie img {
+        width: 100%;
+        height: auto;
+      }
+
+      .movie-info {
+        padding: 10px;
+      }
+
+      .movie-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .movie-deadline {
+        font-style: italic;
+        margin-bottom: 5px;
+      }
+
+      .rating-form {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type=radio] {
+        margin-right: 10px;
+      }
+
+      input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+
+      input[type=submit]:hover {
+        background-color: #3e8e41;
+      }
+
+      .dropdown {
+        position: left;
+        display:inline-block;
+        margin-left: 50px;
+        margin-top: -250px;
+        margin-bottom: 13px;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        background-color: #ffffff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      }
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      
+      .dropdown-item {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .dropdown-item:hover {
+        background-color: #9b9b9b;
+      }
+      
+      .dropdown-content a {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .dropdown-content a:hover {
+        background-color: #B9E9FC;
+      }
+    </style>
+  </head>
+
+  {% block body %}
+  <body>
+    <h1>My Rentals</h1>
+    <div class="dropdown">
+      <div class="dropdown-content">
+        <a href={{url_for('login')}}>Logout</a>
+      </div>
+      <button class="dropdown-item">Menu &#9662;</button>
+    </div>
+    <h2><b>Balance = {{balance}}</b></h2>
+    <div class="movie-list">
+      {% for i in range(0, length) %}
+      <div class="movie">
+        <div class="movie-info">
+          <form action="/customer" method="post">
+          <input type="radio" name="titlesel" value="{{titles[i]}}">Rate this movie:
+          <div class="movie-title">{{ id[i] }}.  {{titles[i]}}</div>
+          <div class="movie-deadline">Rented on {{ borrow_date[i] }}</div>
+          <div class="movie-deadline">Return by {{ deadline[i] }}</div>
+          <div class="rating-form">
+            
+              <label for="rating">Rate this movie:</label>
+              <input type="radio" name="rating" value="1">1
+              <input type="radio" name="rating" value="2">2
+              <input type="radio" name="rating" value="3">3
+              <input type="radio" name="rating" value="4">4
+              <input type="radio" name="rating" value="5">5
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+  {% endblock %}
+</html>

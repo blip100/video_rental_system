@@ -1,0 +1,231 @@
+<!--
+
+    add:
+        details
+    update:
+        select movie
+
+    action inside form is not written
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Manager</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f0f0f0;
+		}
+        .dropdown {
+		position: relative;
+		display: inline-block;
+		}
+    .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .movie {
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+	.dropdown-content {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	}
+
+	.dropdown:hover .dropdown-content {
+	display: block;
+	}
+
+	.dropdown-item {
+	color: #333;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	}
+
+	.dropdown-item:hover {
+	background-color: #f2f2f2;
+	}
+
+	.dropdown-content a {
+	color: #333;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	}
+
+	.dropdown-content a:hover {
+	background-color: #f2f2f2;
+	}
+
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+			margin-bottom: 30px;
+			color: #333;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 50px;
+		}
+
+		label {
+			margin-top: 20px;
+			font-size: 18px;
+			color: #333;
+		}
+
+		input[type="text"] {
+			padding: 10px;
+			font-size: 16px;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+			width: 300px;
+			max-width: 100%;
+			box-sizing: border-box;
+			margin-top: 5px;
+		}
+
+		select {
+			padding: 10px;
+			font-size: 16px;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+			width: 300px;
+			max-width: 100%;
+			box-sizing: border-box;
+			margin-top: 5px;
+		}
+
+		input[type="submit"] {
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-top: 20px;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+		
+		/* a {
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-top: 20px;
+		}
+
+		a:hover {
+			background-color: #3e8e41;
+		} */
+		.result {
+			margin-top: 50px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.result label {
+			font-size: 18px;
+			color: #333;
+			margin-bottom: 10px;
+		}
+
+		.result input[type="text"] {
+			padding: 10px;
+			font-size: 16px;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+			width: 300px;
+			max-width: 100%;
+			box-sizing: border-box;
+			margin-top: 5px;
+			text-align: center;
+		}
+
+		.result input[type="submit"] {
+			margin-top: 20px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			padding: 10px 20px;
+		}
+
+		.result input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+		input[type="radio"] {
+      display: none;
+    }
+    
+    label[for="User"]::before,
+    label[for="Staff"]::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+      border-radius: 50%;
+      border: 2px solid #CCCCCC;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+    
+    input[type="radio"]:checked + label::before {
+      background-color: #007BFF;
+      border-color: #007BFF;
+    }
+	</style>
+</head>
+
+{% block body %}
+<body>
+	<h1>Movie Manager</h1>
+	<form action="/deluser" method="POST">
+<!-- <input type="submit" value="Search"> -->
+<div class="dropdown">
+	<button class="dropdown-item">Menu &#9662;</button>
+	<div class="dropdown-content">
+	  <a href={{url_for('totalorders')}}>Check Status</a>
+	  <a href={{url_for('login')}}>Logout</a>
+	</div>
+  </div>
+	<div class="result">
+			<!-- <label for="rent">Rent:</label>
+			<input type="text" id="rent" name="rent" required> -->
+			<label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <p>Select the type:</p>
+            <input type="radio" id="User" name="user_cat" value="User" checked>
+            <label for="User">User</label>
+            <input type="radio" id="Staff" name="user_cat" value="Staff">
+            <label for="Staff">Staff</label>
+			<input type="submit" value="Update">
+			<a href={{ url_for('manager') }} style="padding: 10px 20px;background-color: #4CAF50;color: white;border: none;border-radius: 5px;font-size: 16px;cursor: pointer;margin-top: 20px;">Add or Update Movies</a>
+		</form>
+	</div>
+</body>
+{% endblock %}
+</html>
