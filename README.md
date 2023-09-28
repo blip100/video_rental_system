@@ -61,4 +61,25 @@ Feel free to explore the VRS system and enjoy a seamless movie rental experience
 
 8. **Data Science Recommendations**: Enjoy personalized movie recommendations based on your history and current trends in purchases.
 
-Thank you for using the Video Rental System (VRS)! We hope you have a great movie-watching experience.
+To run the Video Rental System (VRS) on your local machine, follow these steps:
+
+1. **Clone the Repository**: Clone the VRS repository from GitHub by running the following command in your terminal:
+
+    ```bash
+    git clone https://github.com/your-username/vrs.git
+    cd vrs
+    ```
+
+    Replace `"https://github.com/your-username/vrs.git"` with the actual URL of your GitHub repository.
+
+2. **Run the Program**: Open your terminal and execute the following command to start the VRS system:
+
+    ```bash
+    python3 routes.py
+    ```
+
+    If you encounter any errors, please check the path of the data for the recommender model in the `recommender.py` file.
+
+3. **Enjoy VRS**: Explore the Video Rental System, rent or buy movies, and experience a seamless movie-watching journey!
+
+Thank you for choosing the Video Rental System (VRS)!
